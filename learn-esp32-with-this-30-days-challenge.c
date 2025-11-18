@@ -3,9 +3,10 @@
 #include "driver/gpio.h" // GPIO
 
 #define LED GPIO_NUM_2 // LED
+static int day = 1; // Simulated day counter
 
 static void task_fast(void *arg) { // Fast blink task
-  while (true) { gpio_set_level(LED, 1); vTaskDelay(pdMS_TO_TICKS(100)); gpio_set_level(LED, 0); vTaskDelay(pdMS_TO_TICKS(100)); } // Loop
+  while (true) { gpio_set_level(LED, 1); vTaskDelay(pdMS_TO_TICKS(100)); gpio_set_level(LED, 0); vTaskDelay(pdMS_TO_TICKS(100)); day++; } // Loop increments day
 } // End
 
 static void task_slow(void *arg) { // Slow blink task
